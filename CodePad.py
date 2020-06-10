@@ -114,6 +114,8 @@ class Notepad:
                                        menu=self.__thisHelpMenu)
         self.__thisFontMenu.add_command(label="Comic Sans MS", 
                                         command=self.__fontSans)
+        self.__thisFontMenu.add_command(label="Lazer 84", 
+                                        command=self.__fontLazer)
         self.__thisMenuBar.add_cascade(label="Fonts", 
                                        menu=self.__thisFontMenu)
         
@@ -133,13 +135,19 @@ class Notepad:
     def __releaseNotes(self):
         webbrowser.open('https://thecupofcaits.github.io/codepad.html')
     def __showAbout(self): 
-        showinfo("Codepad","v0.2 (Now with Fonts!)")
+        showinfo("Codepad","This is CodePad v0.3")
 
     def __fontSans(self): 
 
         global text
 
         self.__thisTextArea.config(font=("Comic Sans MS", 8))
+
+    def __fontLazer(self):
+
+        global text
+        
+        self.__thisTextArea.config(font=("lazer84"))
   
     def __openFile(self): 
           
@@ -153,6 +161,7 @@ class Notepad:
                                                 ("CSS Documents", "*.css"),
                                                 ("CodeCode Script", "*.code"),
                                                 ("Batch File", "*.bat"),
+                                                ("GooseScript File", "*.honk"),
                                                 ("Rich Text Document", "*.rtf")])
         
   
@@ -193,6 +202,7 @@ class Notepad:
                                                  ("CSS Documents", "*.css"),
                                                 ("CodeCode Script", "*.code"),
                                                 ("Batch File", "*.bat"),
+                                                ("GooseScript File", "*.honk"),
                                                 ("Rich Text Document", "*.rtf")])
   
             if self.__file == "": 
