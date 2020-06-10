@@ -116,7 +116,20 @@ class Notepad:
                                         command=self.__fontSans)
         self.__thisFontMenu.add_command(label="Lazer 84", 
                                         command=self.__fontLazer)
-        self.__thisMenuBar.add_cascade(label="Fonts", 
+        self.__thisFontMenu.add_command(label="Helvetica", 
+                                        command=self.__fontHelvetica)
+        self.__thisFontMenu.add_command(label="Goose Invasion", 
+                                        command=self.__fontGoose)
+        self.__thisFontMenu.add_separator()
+        self.__thisFontMenu.add_command(label="Font Size 8px", 
+                                        command=self.__font8px)
+        self.__thisFontMenu.add_command(label="Font Size 16px", 
+                                        command=self.__font16px)
+        self.__thisFontMenu.add_command(label="Font Size 32px", 
+                                        command=self.__font32px)
+        self.__thisFontMenu.add_command(label="Font Size 48px", 
+                                        command=self.__font48px)
+        self.__thisMenuBar.add_cascade(label="Font Options", 
                                        menu=self.__thisFontMenu)
         
   
@@ -135,19 +148,50 @@ class Notepad:
     def __releaseNotes(self):
         webbrowser.open('https://thecupofcaits.github.io/codepad.html')
     def __showAbout(self): 
-        showinfo("Codepad","This is CodePad v0.3")
+        showinfo("Codepad","This is CodePad v0.4")
 
     def __fontSans(self): 
 
+        global font; font = "comic sans ms"
         global text
 
-        self.__thisTextArea.config(font=("Comic Sans MS", 8))
+        self.__thisTextArea.config(font=("Comic Sans MS",size))
 
     def __fontLazer(self):
 
         global text
+        global font; font = "lazer84"
         
-        self.__thisTextArea.config(font=("lazer84"))
+        self.__thisTextArea.config(font=("lazer84",size))
+
+    def __fontGoose(self):
+
+        global text
+        global font; font = "Goosefont"
+        
+        self.__thisTextArea.config(font=("Goosefont",size))
+
+    def __fontHelvetica(self):
+
+        global text
+        global font; font = "Helvetica"
+        
+        self.__thisTextArea.config(font=("Helvetica",size))
+
+    def __font8px(self):
+        self.__thisTextArea.config(font=(font,8))
+        global size; size = "8"
+
+    def __font16px(self):
+        self.__thisTextArea.config(font=(font,16))
+        global size; size = "16"
+
+    def __font32px(self):
+        self.__thisTextArea.config(font=(font,32))
+        global size; size = "32"
+    def __font48px(self):
+        self.__thisTextArea.config(font=(font,48))
+        global size; size = "48"
   
     def __openFile(self): 
           
@@ -234,11 +278,12 @@ class Notepad:
   
     def run(self): 
         self.__root.iconbitmap('editor.ico')
+        global font; font = "Helvetica"
+        global size; size = "8"
         self.__root.mainloop()
   
   
   
-  
-# Run main application 
+   
 notepad = Notepad(width=600,height=400)
 notepad.run() 
